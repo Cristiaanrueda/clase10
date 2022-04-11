@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- el orden de los archivos es importante. si tengo 1 archivo que va a usar variables de otro, tiene que estar primero -->
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Sitio Responsive</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top">
+            <header class="principal">
+                <h1>NUCA-CONF</h1>
+                <P>Somos chetosss.....</P>
+                <p>Chetos malll</p>
+            </header>
+            <div class="entrada entrada1">
+                <p>ENTRADA</p>
+                <p class="price">$500</p>
+                <p>VIP + FOTO CON FACU</p>
+            </div>
+            <div class="entrada entrada2">
+                <p>ENTRADA</p>
+                <p class="price">$200</p>
+                <p>AL FONDO Y 🍺🍺 CON LUCHO </p>
+            </div>
+        </div>
+        <nav class="menu">
+            <!--Los aria son absolutamente semanticos. Este boton de aca es un control de este menu list de abajo. -->
+            <button aria-expanded="false" aria-controls="menu-list">
+                <span class="open">&#9776;</span>
+                <span class="close">&#9747;</span>
+                Menu
+            </button>
+            <ul id="menu-list">
+                <li>
+                    <a href="">About</a>
+                </li>
+                <li>
+                    <a href="">Speakera</a>
+                </li>
+                <li>
+                    <a href="">Precios</a>
+                </li>
+                <li>
+                    <a href="">Code</a>
+                </li>
+                <li>
+                    <a href="">VIP</a>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="features">
+            <div class="feature">
+                <span class="icon">🍔</span>
+                <h3>Comida</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem beatae ex odit
+            </div>
+            <div class="feature">
+                <span class="icon">🍺 </span>
+                <h3>Birra</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem beatae ex odit
+            </div>
+            <div class="feature">
+                <span class="icon">💻</span>
+                <h3>CODE BABY</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem beatae ex odit
+            </div>
+            <div class="feature">
+                <span class="icon">🎵</span>
+                <h3>Musica all night</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem beatae ex odit
+            </div>
+        </section>
+
+        <section class="about">
+            <video src="assets/vid1.mp4" loop autoplay></video>
+            <div class="about__Details">
+                <h2>VAMOS A CODEAR!</h2>
+                <P>Slim profile, easy to hold and loaded with cheese.</P>
+                <p>This is the one you have bee waiting for</p>
+                <button>Info plissss &#10142;</button>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2>Instant Grams</h2>
+            <img src="https://source.unsplash.com/random/201x201" alt="">
+            <img src="https://source.unsplash.com/random/202x202" alt="">
+            <img src="https://source.unsplash.com/random/203x203" alt="">
+            <img src="https://source.unsplash.com/random/204x204" alt="">
+            <img src="https://source.unsplash.com/random/205x205" alt="">
+            <img src="https://source.unsplash.com/random/206x206" alt="">
+            <img src="https://source.unsplash.com/random/207x207" alt="">
+            <img src="https://source.unsplash.com/random/207x208" alt="">
+            <img src="https://source.unsplash.com/random/207x209" alt="">
+            <img src="https://source.unsplash.com/random/207x210" alt="">
+        </section>
+    </div>
+    <script>
+        // definimos una constante navButton y lo seleccionamos con un document.queryselector, llamo al boton que tiene un atributo aria expanded. 
+        const navButton = document.querySelector('button[aria-expanded]');
+        // que quiero del boton, quiero el atributo aria expanded false. con JS podemos llamar a un atributo o a un elemento.
+        // donde esta el target puedo poner el navbutton, pasar el boton completo. pero no quiero el boton completo, quiero un target, el evento. Podemos pasar el evento completo, osea cuando hagamos click, pero no queremos pasar el evento completo, del evento, el target queremos. Que es el target, cuando le damos click a algo, es eso que estamos seleccionando, lo que estamos targeteando. Declaramos una constante que diga expandir, y a esta expandir le decimos a este target (donde hiciste click) dame el atributo (getAttribute) 
+        function toggleNav({target}) {
+            const expandir = target.getAttribute('aria-expanded') === "true" || false;
+            // en vez de traer u atributo, vamos a setear un atributo con setAttribute, le vamos a setear el aria expanded, que sea lo opuesto a expandir. porque lo opuesto? porque si es falso es true, y si es true es false, un toggle
+            navButton.setAttribute ('aria-expanded', !expandir)
+            // nos arroja un string "false". un string es un tipo de dato, de caracteres, texto. le agregamos la funcion typeof y nos arroja el tipo de dato que estamos desplegando. en la consola apareceria "string" . Yo necesito un booleano, un true o un false, para ello hago lo de arriba de decir la const es === a true o false 
+            console.log(expandir);
+        }
+        // al navbutton, le agregamos un escuchador de eventos, en este caso click, cuando suceda ese evento, ejecuta la funcion togglenav.
+        navButton.addEventListener('click', toggleNav)
+        
+    </script>
+</body>
+</html>

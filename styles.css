@@ -1,0 +1,283 @@
+body {
+    font-size: 15px;
+
+}
+
+button {
+    /* utilizando la variable del otro archivo */
+    background: var(--color-cheto);
+    border: 1px solid white;
+    padding: 10px 20px;
+    color: white;
+}
+
+
+/* lo del img: esto practicamente es un reseteo */
+img {
+    max-width: 100%;
+}
+
+
+/* ACA EMPIEZA EL WRAPPER */
+.wrapper {
+    display: grid;
+    grid-gap: 20px;
+}
+
+
+/* TOPPPPPPPPPPP.- COMO TAMBIEN QUIERO Q SEA GRID LO VAMOS A HACER CON TEMPLATES*/
+.top {
+    /* como tengo 3 elementos dentro quiero q tmbn sea grid. que se omporte como una grilla y 1 ocupe mucho mas que las otras*/
+    display: grid;
+    grid-gap: 20px;
+    /* principal ocupa 2 y entrada 1 */
+    grid-template-areas:
+    'principal principal entrada1'
+    'principal principal entrada2'
+    ;
+}
+
+.principal {
+    /* grid area : mapeo */
+    grid-area: principal;
+    /* que no ocupe menos q esto */
+    min-height: 400px;
+    background: white url(assets/bg1.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 50px;
+    display: flex;
+    /* por defecto es row */
+    flex-direction: column;
+    /* justify cont centra en el eje x. pero como lo hice flex column, cambio de eje, va a centrar verticalmente. el align items lo mismo pero al revez  */
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* todo lo que pertenezca a principal, que sea descendiente directo */
+.principal > * {
+    background: var(--color-cheto);
+    padding: 5px;
+
+}
+
+
+.entrada {
+    background: var(--color-cheto);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+}
+
+.entrada p {
+    margin: 0;
+
+}
+
+.entrada1 {
+    grid-area: entrada1;
+}
+
+.entrada2 {
+    grid-area: entrada2;
+}
+
+.price {
+    font-size: 60px;
+    font-weight: 300;
+}
+
+
+/* MENU ---------------------------------------------------------- */
+.menu ul {
+    display: grid;
+    grid-gap: 10px;
+    padding: 0;
+    /* como son listas no quiero q se desplieguen comot tal */
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+}
+
+.menu a {
+    background: var(--color-cheto);
+    /* si lo despliego como bloque puedo ponerle padding y se van a agrandar */
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    /* lo pone todo en mayus */
+    text-transform: uppercase;
+}
+
+/* como es el unico q hay, lo llamo directamente por el nombre del atributo. ahi estoy seleccionando a ese boton */
+[aria-controls="menu-list"] {
+    /* none lo borra del html, hide esta ahi pero no se ve. acordarse eso */
+    display: none;
+}
+
+/* FEATURES ------------------------------------------------------ */
+
+.features {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.feature {
+    background: white;
+    padding: 10px;
+    /* los que estan dentro del feature son todos elem de texto, los puedo centrar con texto, un text-align. NO HAY Q VOLVERSE LOCO, AL TEXTO TEXT-ALIGN. */
+    text-align: center;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.feature .icon {
+    font-size: 50px;
+}
+
+.feature p {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.feature h3 {
+    background: var(--color-cheto);
+}
+
+
+/* ABOUT ----------------------------------------- */
+
+.about {
+    background: var(--color-cheto);
+    padding: 50px;
+    display: grid;
+    /* a la columna del video le quiero dar 400px fijo y a lo otro que sea 1fr */
+    grid-template-columns: 400px 1fr;
+    grid-gap: 20px;
+    align-items: center;
+
+}
+
+.about video {
+    /* para que no tome su ancho, si no para que tome el ancho de su contenedor */
+    width: 100%;
+}
+
+
+/* GALLERY ------------------------------------------ */
+
+.gallery {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.gallery img {
+    /*  para q las img ocupen todo el ancho y esten todas iguales */
+    width: 100%;
+}
+
+.gallery h2 {
+    /* como esta dentro de un contenedor grid, puedo ponerle est prop q es una propiedad del item grid. 1 / -1= desde el inicio andate hasta el final. ahora se nos pone arriba de nuestras fotos */
+    grid-column: 1 / -1;
+    /* trukito, no tendria q ser grid porq es solo texto. pero veremos q hace */
+    display: grid;
+    /* lo dividi en 3 col. primer columna 1 fracc, la del medio auto todo lo q puedas y la 3era 1fr. */
+    grid-template-columns: 1fr auto 1fr;
+    grid-gap: 20px;
+    color: white;
+    align-items: center;
+}
+
+/* se comportan como elemento el after y before. quedandonos el h2 en el medio, before a la izq y after a la der. el css me inyecta elbefore y after en el html. es una MAGIA */
+
+.gallery h2:before,
+.gallery h2:after {
+    display: block;
+    content: '';
+    height: 10px;
+    /* otra manera de hacerlo es al gradient definirle el (to) y una direccion ej (to left). De la manera de abajo le ponemos un var, si la funcion esta declarada la podemos traer, sino le podemos decir el label(definicion) y el valor al mismo tiempo (--direction, left) es lo mismo que el to left pero lo estoy haciendo con una variable. Para que? para reutilizarlo despues. le pega a los 2, before y after */
+    background: linear-gradient(
+        to var(--direction, left), #1cb5e0, transparent
+    );
+}
+
+.gallery h2:after {
+    /* podemos cambiarle el valor a la variable de arriba, para que al :after le cambie la direccion a la derecha, */
+    --direction: right;
+}
+
+/* si la pantalla es mas grande q 1000px, se va para abajo. Si es menor a 1000px, pasara lo de abajo, se va a ir para arriba el menu */
+@media (max-width: 1000px) {
+    .menu {
+        /*podemos ponerle order porque todo es grid, esta todo dentro del wrapper se posiciona arriba de todo */
+        order: -1;
+        /* perspective le da un efecto 3d */
+        perspective: 800px;
+    }
+
+    [aria-controls="menu-list"] {
+        /* lo hacemos aparecer aca */
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .menu ul {
+        /* esto es de la clase de animaciones y transiciones. transform le decimos rota en el eje x 90 grados, la transicion le decimos que este rotate sea todo en 0.5 segundos.  */
+        transform: rotateX(90deg);
+        transition: all 0.5s;
+        /* para que no quede una linea fea */
+        max-height: 0;
+        overflow: hidden;
+    }
+
+
+    /* añadimos el otro control, cuandos sea true.... el simbolo ~ no es como el >, ya que es hijo directo. El "~" significa, todo lo que venga despues del expanden true, va a tener este orden. desde este valor para abajo, si cumplis la condicion, vas a tener estas reglas de css. eso significa el "~"*/
+    [aria-expanded="true"] ~ ul {
+        display: grid;
+        max-height: 500px;
+        transform: rotateX(0deg);
+    }
+
+
+    /* si el expanded area es falso, que el close (iconico) no se despliegue. Si es true, que se muestre. Lo mismo con el .open true, si es true que no se despliegue el menu hamb, si es false (osea cerrado) que se muestre */
+    [aria-expanded="false"] .close {
+        display: none;
+    }
+    [aria-expanded="true"] .close {
+        display: inline-block;
+    }
+
+    [aria-expanded="true"] .open {
+        display: none;
+    }
+    [aria-expanded="false"] .open {
+        display: inline-block;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .top {
+        grid-template-areas: 
+        'principal principal'
+        'entrada1 entrada2';
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .top {
+        grid-template-areas: 
+        'principal'
+        'entrada1'
+        'entrada2';
+    }
+}

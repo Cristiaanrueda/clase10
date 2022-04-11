@@ -1,0 +1,52 @@
+/* main.css seria como nuestro root css, donde definimos estilos globales. Buena practica. Colores, fuentes, colores de los a, h1, etc. cosas globales */
+
+:root {
+    /* variable, la podemos utilizar mas tarde en el otro archivo css */
+    --color-cheto: linear-gradient(
+        0deg,
+        rgba(55, 0, 140, 0.9934348739495799) 0%,
+        rgba(197, 12, 204, 1) 100%
+    );
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Arimo&family=BIZ+UDGothic&family=Hubballi&family=Mohave:ital,wght@1,600&family=PT+Sans+Narrow&family=Smooch+Sans:wght@100&display=swap');
+
+html {
+    box-sizing: border-box;
+    font-family: 'BIZ UDGothic', sans-serif;
+    font-weight: 900;
+    font-size: 10px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    background: linear-gradient(90deg, #fc466b 0%, #3f5efb 100%);
+    min-height: cacl(100vh - 100px);
+    margin: 50px;
+    background-attachment: fixed;
+    letter-spacing: -1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 5px 0;
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+a {
+    color: white;
+}
